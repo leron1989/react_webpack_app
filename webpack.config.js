@@ -3,7 +3,12 @@ const path = require('path');
 
 module.exports = {
     entry:{
-        main:'./src/index.js'
+        main:'./src/index.js',
+        hello:'./src/hello-world.js',
+        jsx: './src/jsx.js',
+        element: './src/element-render.js',
+        component: './src/component-props.js',
+        state:'./src/state-livecycle.js'
     },
     output:{
         filename:'[name].bundle.js',
