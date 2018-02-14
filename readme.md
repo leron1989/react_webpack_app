@@ -343,4 +343,35 @@
         return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
     }
     ```
-    
+## 事件处理
+
+* 事件定义，对比传统DOM事件定义
+    >传统DOM事件写法：
+    ```javascript
+    <button onclick="activateLasers()">
+        Activate Lasers
+    </button>
+    ```
+    1. DOM事件属性命名采用小写，如：onclick
+    2. 事件语法中传入的是方法名字符串+()
+    3. 传统DOM中可以通过`return false`阻止默认行为。
+
+    >React中事件写法：
+    ```javascript
+    class ActionLink extends React.component{
+        handleClick(e) {
+            e.preventDefault();
+            console.log('The link was clicked.');
+        }
+
+        return (
+            <a href="http://localhost:8080" onClick={this.handleClick}>
+                Click me
+            </a>
+        );
+    }
+    ```
+    1. React事件属性命名采用驼峰式写法，如：onClick
+    2. JSX 语法需要传入一个函数作为事件处理函数
+    3. React无法使用`return false`阻止默认行为，必须使用e.preventDefault()，所谓的默认行为并不是指语句后续的行为，而是指如：通过<a>标签打开链接
+
