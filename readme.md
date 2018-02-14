@@ -236,10 +236,10 @@
     ```
     >**注意**
 
-    >在时钟例子中，我们在挂载方法中设置了定时器ID：this.timerId
-    >在React中this.props与this.state具有特殊含义，一般用于存储视觉输出内容。
-    >其他不用于视觉输出内容，可以收统向组件类中添加其他字段
-    >不在render()方法中使用的内容也不应该出现在state中
+    >在时钟例子中，我们在挂载方法中设置了定时器ID：this.timerId<br>
+    >在React中this.props与this.state具有特殊含义，一般用于存储视觉输出内容。<br>
+    >其他不用于视觉输出内容，可以收统向组件类中添加其他字段<br>
+    >不在render()方法中使用的内容也不应该出现在state中<br>
 
 * componentWillUnmount() 组件`卸载`生命周期方法
     ```javascript
@@ -314,7 +314,7 @@
 
     7. 要通过状态值来计算下一状态值，需要使用setState()接受函数的方式
 
-    >第一个参数prevState：上一状态；第二个参数props：主键属性
+    >第一个参数prevState：上一状态；第二个参数props：主键属性<br>
     >下方使用了`箭头函数`
     ```javascript
     this.setState((prevState, props) => ({
@@ -334,7 +334,7 @@
     <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
     ```
 
-    >FormattedDate组件并不知道其属性中接收的date来自父组件的状态，还是属性，或者其他...
+    >FormattedDate组件并不知道其属性中接收的date来自父组件的状态，还是属性，或者其他...<br>
     >这通常被称为自顶向下或单向数据流。 任何状态始终由某些特定组件所有，并且从该状态导出的任何数据或 UI 只能影响树中下方的组件。
     ```javascript
     <FormattedDate date={this.state.date} />
