@@ -1,7 +1,7 @@
-#React学习记录
-===
-##JSX简介
-===
+# React学习记录
+
+## JSX简介
+
 * JSX使用实例：
 
     `const element = <h1>Hello, world!</h1>;`  
