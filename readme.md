@@ -189,14 +189,15 @@
 
     2. javascript 函数分两种`纯函数`和`非纯函数`，**所有的React组件必须像`纯函数`那样使用它们的props。**
 
+    >纯函数（不改变输入参数的值）
     ```javascript
-    //纯函数（不改变输入参数的值）
     function sum(a, b) {
         return a + b;
     }
+    ```
     
-    
-    //非纯函数（改变输入参数的值）
+    >非纯函数（改变输入参数的值）
+    ```javascript
     function withdraw(account, amount) {
         account.total -= amount;
     }
@@ -251,14 +252,12 @@
 
     1. 除了构造函数，不要直接使用this.state更新状态，
     ```javascript
-    //错误姿势
-    this.state.comment = 'Hello';
+    this.state.comment = 'Hello';//错误姿势
     ```
 
     2. 应使用setState()
     ```javascript
-    //正确姿势
-    this.setState({comment: 'Hello'});
+    this.setState({comment: 'Hello'});//正确姿势
     ```
 
     3. 多个状态可以在一个setState()中合并更新
@@ -287,16 +286,17 @@
     ```
 
     5. setState()既可以接收`对象`，也可以接收一个`函数`
+
+    >接收对象
     ```javascript
-    //接收对象
     this.setState({
         date: new Date(),
         num: parseInt(this.state.num) + parseInt(this.props.increment)
     })
     ```
 
+    >接收函数
     ```javascript
-    //接收函数
     this.setState(function(prevState, props){
         return {
             date: new Date(),
@@ -307,20 +307,20 @@
 
     6. **状态更新可能是异步的，因此不应该使用状态的值来计算下一个状态的值**
     ```javascript
-    //错误姿势
     this.setState({
-        counter: this.state.counter + this.props.increment,
+        counter: this.state.counter + this.props.increment //错误姿势
     });
     ```
 
     7. 要通过状态值来计算下一状态值，需要使用setState()接受函数的方式
+
+    >第一个参数prevState：上一状态；第二个参数props：主键属性
+    >下方使用了`箭头函数`
     ```javascript
-    //第一个参数prevState：上一状态；第二个参数props：主键属性
     this.setState((prevState, props) => ({
         counter: prevState.counter + props.increment
     }));
     ```
-    >上方使用了`箭头函数`
 
 * state数据流向，自顶向下流动
 
@@ -332,12 +332,15 @@
     
     ```javascript
     <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+    ```
 
-    //FormattedDate组件并不知道其属性中接收的date来自父组件的状态，还是属性，或者其他
+    >FormattedDate组件并不知道其属性中接收的date来自父组件的状态，还是属性，或者其他...
+    >这通常被称为自顶向下或单向数据流。 任何状态始终由某些特定组件所有，并且从该状态导出的任何数据或 UI 只能影响树中下方的组件。
+    ```javascript
     <FormattedDate date={this.state.date} />
 
     function FormattedDate(props) {
         return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
     }
     ```
-    >这通常被称为自顶向下或单向数据流。 任何状态始终由某些特定组件所有，并且从该状态导出的任何数据或 UI 只能影响树中下方的组件。
+    
