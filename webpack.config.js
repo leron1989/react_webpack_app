@@ -8,7 +8,8 @@ module.exports = {
         jsx: './src/jsx.js',
         element: './src/element-render.js',
         component: './src/component-props.js',
-        state:'./src/state-livecycle.js'
+        state:'./src/state-livecycle.js',
+        event:'./src/event-handler.js'
     },
     output:{
         filename:'[name].bundle.js',

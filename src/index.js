@@ -18,6 +18,7 @@ class List extends React.Component{
                 <Part url="./element-render.html" title="元素渲染"></Part>
                 <Part url="./component-props.html" title="组件 & Props"></Part>
                 <Part url="./state-livecycle.html" title="状态 & 生命周期"></Part>
+                <Part url="./event-handler.html" title="事件处理"></Part>
             </ol>
         );
     }
