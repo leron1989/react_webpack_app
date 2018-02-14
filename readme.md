@@ -375,3 +375,132 @@
     2. JSX 语法需要传入一个函数作为事件处理函数
     3. React无法使用`return false`阻止默认行为，必须使用e.preventDefault()，所谓的默认行为并不是指语句后续的行为，而是指如：通过<a>标签打开链接
 
+* this的绑定
+
+    1. class形式声明的组建事件默认不绑定this，也就是说在事件方法中的this为`undefined`
+    ```javascript
+    errIncrease(e){
+        /*此处this的值未undefined*/
+        console.log(this)
+        this.setState(function(prevStte){
+            return{
+                num : prevState.num + 1
+            }
+        })
+    }
+
+    render(){
+        return (
+            <div>
+                <h2>数量：{this.state.num}</h2>
+                <button onClick={this.errIncrease}>错误示例</button>
+            </div>
+        )
+    }
+    ```
+
+    2. 通过构造函数绑定
+    ```javascript
+    constructor(props){
+        super(props);
+        this.state = {
+            num: 1
+        };
+        this.increase = this.increase.bind(this);/*绑定this*/
+        this.increaseByProps = this.increaseByProps.bind(this, this.props.increaseNum)/*绑定this，并传参*/
+    }
+    ```
+
+    3. 在回调函数中绑定
+    ```javascript
+    render(){
+        return (
+            <div>
+                <h2>数量：{this.state.num}</h2>
+                <button onClick={this.decrease.bind(this)}>减少</button>
+            </div>
+        )
+    }
+    ```
+
+    4. 属性初始化器语法
+    ```javascript
+    handleClick = () => {
+        console.log('this is:', this);
+    }
+    ```
+
+    5. 在回调函数中使用`箭头函数`
+    ```javascript
+    render(){
+        return (
+            <div>
+                <h2>数量：{this.state.num}</h2>
+                <button onClick={(e) => this.backArrowFuncDecrease(e)}>
+                    回调函数中使用箭头函数
+                </button>
+            </div>
+        )
+    }
+    ```
+    >这个语法在每次渲染时都会创建一个不同的回调函数，不建议使用
+
+* 向事件处理程序传递参数
+
+    1. `箭头函数`传递参数
+
+    >箭头函数的形式需要显示的传递event参数，并且作为第二个参数进行传递
+    ```javascript
+    render(){
+        return (
+            <div>
+                <h2>数量：{this.state.num}</h2>
+                <button onClick={(e) => this.backArrowFuncDecrease(this.props.increaseNum, e)}>
+                    回调函数中使用箭头函数
+                </button>
+            </div>
+        )
+    }
+    ```
+
+    2. Function.prototype.bind的形式
+
+    >此形式无需显示的传递event参数，并且event参数排在传递参数后面。
+    ```javascript
+    constructor(props){
+        super(props);
+        this.state = {
+            num: 1
+        };
+        this.increaseByProps = this.increaseByProps.bind(this, this.props.increaseNum)
+    }
+
+    decrease(n, e){
+        console.log(n)
+        console.log(e)
+        this.setState(prevState => ({
+            num: prevState.num - 1
+        }))
+    }
+
+    increaseByProps(n, e){
+        console.log(n)
+        console.log("event is", e)
+        this.setState((prevState) => ({
+            num: prevState.num + parseInt(n)
+        }))
+    }
+
+    render(){
+        return (
+            <div>
+                <h2>数量：{this.state.num}</h2>
+                <button onClick={this.increase}>增加</button>
+                <button onClick={this.decrease.bind(this, this.props.increaseNum)}>减少</button>
+                <button onClick={this.increaseByProps}>传递参数</button><
+            </div>
+        )
+    }
+    ```
+
+## 条件渲染

@@ -9,7 +9,8 @@ module.exports = {
         element: './src/element-render.js',
         component: './src/component-props.js',
         state:'./src/state-livecycle.js',
-        event:'./src/event-handler.js'
+        event:'./src/event-handler.js',
+        condition: './src/condition-render.js'
     },
     output:{
         filename:'[name].bundle.js',
