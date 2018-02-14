@@ -3,12 +3,13 @@
 ## JSX简介
 
 * JSX使用实例：
-
-    `const element = <h1>Hello, world!</h1>;`  
+    ```javascript
+    const element = <h1>Hello, world!</h1>;
+    ```  
     
 * JSX中使用javascript表达式，表达式被包含在`{}`中：
 
-    ```
+    ```javascript
     function formatName(user) {
     return user.firstName + ' ' + user.lastName;
     }
@@ -34,7 +35,7 @@
 
     编译之后的JSX被转化为普通的javaScript对象，因此可以将JSX赋值给变量，作为参数传入，或者作为返回值返回。
     
-    ```
+    ```javascript
     function getGreeting(user) {
     if (user) {
         return <h1>Hello, {formatName(user)}!</h1>;
@@ -45,14 +46,19 @@
 * JSX属性
 
     1. 可以通过引号定义以`字符串`为值的属性：
-    `const element = <div tabIndex="0"></div>;`
+    ```javascript
+    const element = <div tabIndex="0"></div>;
+    ```
+    
     2. 可以通过`{}`来定义以JavaScript表达式为值的属性：
-    `const element = <img src={user.avatarUrl}></img>;`
+    ```javascript
+    const element = <img src={user.avatarUrl}></img>;
+    ```
     
 * JSX嵌套
 
     JSX标签可以相互嵌套：
-    ```
+    ```javascript
     const element = (
     <div>
         <h1>Hello!</h1>
@@ -71,7 +77,7 @@
 * JSX代表Objects
 
     `Babel`转译器会把JSX转换成一个名为`React.createElement()`的方法调用。
-    ```
+    ```javascript
     const element = (
     <h1 className="greeting">
         Hello, world!
@@ -79,7 +85,7 @@
     );
     ```
     等价于
-    ```
+    ```javascript
     const element = React.createElement(
     'h1',
     {className: 'greeting'},
@@ -89,7 +95,9 @@
 ## 元素渲染
 
 * 元素是构成React应用的最小单元，用来描述屏幕上看到的内容。
-    `const element = <h1>Hello, world</h1>;`
+    ```javascript
+    const element = <h1>Hello, world</h1>;
+    ```
 
 * 元素并非组件，元素只是组件的一部分
 
@@ -104,14 +112,14 @@
 
 * 组件定义
     1. 函数定义
-    ```
+    ```javascript
     function Welcome(props) {
         return <h1>Hello, {props.name}</h1>;
     }
     ```
 
     2. 类定义
-    ```
+    ```javascript
     class Welcome extends React.Component {
         render() {
             return <h1>Hello, {this.props.name}</h1>;
@@ -121,11 +129,13 @@
 * 组件渲染
 
     1. React元素可以是DOM标签，也可以是`自定义组件`。因此组件的使用类似DOM标签的使用：
-    `const element = <Welcome name="Sara" />;`
+    ```javascript
+    const element = <Welcome name="Sara" />;
+    ```
 
     2. 自定义组件渲染时，JSX会将属性作为`"props"`对象，传递给组件。<br>
     如下面这段代码，React将`name="Sara"`被作为props对象`{name:"Sara"}`传递给了组件，因此页面渲染的效果为：Hello, Sara
-    ```
+    ```javascript
     function Welcome(props) {
         return <h1>Hello, {props.name}</h1>;
     }
@@ -146,7 +156,7 @@
 
     2. 组件可以在它的输出中引用其它组件，这就可以让我们用同一组件来抽象出任意层次的细节。<br>
     如，App组件在输出组多次引用了Welcome组件：
-    ```
+    ```javascript
     function Welcome(props) {
         return <h1>Hello, {props.name}</h1>;
     }
@@ -178,13 +188,14 @@
 
     2. javascript 函数分两种`纯函数`和`非纯函数`，**所有的React组件必须像`纯函数`那样使用它们的props。**
 
-    ```纯函数（不改变输入参数的值）
+    ```javascript
+    //纯函数（不改变输入参数的值）
     function sum(a, b) {
         return a + b;
     }
-    ```
-    ----------------------------------------------------------------
-    ```非纯函数（改变输入参数的值）
+    
+    
+    //非纯函数（改变输入参数的值）
     function withdraw(account, amount) {
         account.total -= amount;
     }
@@ -195,7 +206,7 @@
 
 * 添加局部状态
     添加一个`类构造函数`来初始化`this.state`。
-    ```
+    ```javascript
     class Clock extends React.Component {
         constructor(props) {
             super(props);
@@ -213,7 +224,7 @@
     }
     ```
 * componentDidMount() 组件`挂载`生命周期方法
-    ```
+    ```javascript
     componentDidMount() {
         this.timerID = setInterval(
         () => this.tick(),
@@ -229,7 +240,7 @@
     >不在render()方法中使用的内容也不应该出现在state中
 
 * componentWillUnmount() 组件`卸载`生命周期方法
-    ```
+    ```javascript
     componentWillUnmount() {
         clearInterval(this.timerID);
     }
@@ -238,17 +249,19 @@
 * state使用方法
 
     1. 除了构造函数，不要直接使用this.state更新状态，
-    ```错误姿势
+    ```javascript
+    //错误姿势
     this.state.comment = 'Hello';
     ```
 
     2. 应使用setState()
-    ```正确姿势
+    ```javascript
+    //正确姿势
     this.setState({comment: 'Hello'});
     ```
 
     3. 多个状态可以在一个setState()中合并更新
-    ```
+    ```javascript
     this.setState({
         date: new Date(),
         num: parseInt(this.state.num) + parseInt(this.props.increment)
@@ -256,7 +269,7 @@
     ```
 
     4. 多个状态也可以独立更新
-    ```
+    ```javascript
     componentDidMount() {
         fetchPosts().then(response => {
             this.setState({
@@ -273,14 +286,16 @@
     ```
 
     5. setState()既可以接收`对象`，也可以接收一个`函数`
-    ```接收对象
+    ```javascript
+    //接收对象
     this.setState({
         date: new Date(),
         num: parseInt(this.state.num) + parseInt(this.props.increment)
     })
     ```
 
-    ```接收函数
+    ```javascript
+    //接收函数
     this.setState(function(prevState, props){
         return {
             date: new Date(),
@@ -290,14 +305,16 @@
     ```
 
     6. **状态更新可能是异步的，因此不应该使用状态的值来计算下一个状态的值**
-    ```错误姿势
+    ```javascript
+    //错误姿势
     this.setState({
         counter: this.state.counter + this.props.increment,
     });
     ```
 
     7. 要通过状态值来计算下一状态值，需要使用setState()接受函数的方式
-    ```第一个参数prevState：上一状态；第二个参数props：主键属性
+    ```javascript
+    //第一个参数prevState：上一状态；第二个参数props：主键属性
     this.setState((prevState, props) => ({
         counter: prevState.counter + props.increment
     }));
@@ -311,9 +328,11 @@
     2. 状态之所以被称为`局部`或`封装`，是因为除了组件本身外，其他组件都不可访问。
 
     3. 父组件可将其状态作为属性传递给子组件
-    `<h2>It is {this.state.date.toLocaleTimeString()}.</h2>`
+    
+    ```javascript
+    <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
 
-    ```FormattedDate组件并不知道其属性中接收的date来自父组件的状态，还是属性，或者其他
+    //FormattedDate组件并不知道其属性中接收的date来自父组件的状态，还是属性，或者其他
     <FormattedDate date={this.state.date} />
 
     function FormattedDate(props) {
