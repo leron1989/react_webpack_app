@@ -11,18 +11,18 @@
 
     ```javascript
     function formatName(user) {
-    return user.firstName + ' ' + user.lastName;
+        return user.firstName + ' ' + user.lastName;
     }
     
     const user = {
-    firstName: 'Harper',
-    lastName: 'Perez'
+        firstName: 'Harper',
+        lastName: 'Perez'
     };
     
     const element = (
-    <h1>
-        Hello, {formatName(user)}!
-    </h1>
+        <h1>
+            Hello, {formatName(user)}!
+        </h1>
     );
     
     ReactDOM.render(
@@ -37,10 +37,10 @@
     
     ```javascript
     function getGreeting(user) {
-    if (user) {
-        return <h1>Hello, {formatName(user)}!</h1>;
-    }
-    return <h1>Hello, Stranger.</h1>;
+        if (user) {
+            return <h1>Hello, {formatName(user)}!</h1>;
+        }
+        return <h1>Hello, Stranger.</h1>;
     }
     ```
 * JSX属性
@@ -60,10 +60,10 @@
     JSX标签可以相互嵌套：
     ```javascript
     const element = (
-    <div>
-        <h1>Hello!</h1>
-        <h2>Good to see you here.</h2>
-    </div>
+        <div>
+            <h1>Hello!</h1>
+            <h2>Good to see you here.</h2>
+        </div>
     );
     ```
     >**警告:**
@@ -79,17 +79,17 @@
     `Babel`转译器会把JSX转换成一个名为`React.createElement()`的方法调用。
     ```javascript
     const element = (
-    <h1 className="greeting">
-        Hello, world!
-    </h1>
+        <h1 className="greeting">
+            Hello, world!
+        </h1>
     );
     ```
     等价于
     ```javascript
     const element = React.createElement(
-    'h1',
-    {className: 'greeting'},
-    'Hello, world!'
+        'h1',
+        {className: 'greeting'},
+        'Hello, world!'
     );
     ```
 ## 元素渲染
@@ -141,6 +141,7 @@
     }
 
     const element = <Welcome name="Sara" />;
+    
     ReactDOM.render(
         element,
         document.getElementById('root')
@@ -227,8 +228,8 @@
     ```javascript
     componentDidMount() {
         this.timerID = setInterval(
-        () => this.tick(),
-        1000
+            () => this.tick(),
+            1000
         );
     }
     ```
