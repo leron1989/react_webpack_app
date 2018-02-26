@@ -11,7 +11,8 @@ module.exports = {
         state:'./src/state-livecycle.js',
         event:'./src/event-handler.js',
         conditionRendering:'./src/condition-rendering.js',
-        listAndKeys:'./src/list-key.js'
+        listAndKeys:'./src/list-key.js',
+        form:'./src/form.js'
     },
     output:{
         filename:'[name].bundle.js',
