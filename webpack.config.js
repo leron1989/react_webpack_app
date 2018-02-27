@@ -12,7 +12,10 @@ module.exports = {
         event:'./src/event-handler.js',
         conditionRendering:'./src/condition-rendering.js',
         listAndKeys:'./src/list-key.js',
-        form:'./src/form.js'
+        form:'./src/form.js',
+        liftingStateUp: './src/lifting-state-up.js',
+        compositionVsInheritance: './src/composition-inheritance.js',
+        thinkingReact: './src/thinking-react.js'
     },
     output:{
         filename:'[name].bundle.js',
@@ -39,6 +42,10 @@ module.exports = {
                 query:{
                     presets:['es2015','react']
                 }
+            },
+            {
+                test:/\.css$/,
+                use: ['style-loader', 'css-loader']
             }
         ]
     }

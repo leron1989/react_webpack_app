@@ -22,6 +22,9 @@ class List extends React.Component{
                 <Part url="./condition-rendering.html" title="条件渲染"></Part>
                 <Part url="./list-key.html" title="列表 & Keys"></Part>
                 <Part url="./form.html" title="表单"></Part>
+                <Part url="./lifting-state-up.html" title="状态提升"></Part>
+                <Part url="./composition-inheritance.html" title="组合 VS 继承"></Part>
+                <Part url="./thinking-react.html" title="React 理念"></Part>
             </ol>
         );
     }
