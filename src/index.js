@@ -25,6 +25,7 @@ class List extends React.Component{
                 <Part url="./lifting-state-up.html" title="状态提升"></Part>
                 <Part url="./composition-inheritance.html" title="组合 VS 继承"></Part>
                 <Part url="./thinking-react.html" title="React 理念"></Part>
+                <Part url="./react-router-demo.html" title="React Router 体验"></Part>
             </ol>
         );
     }

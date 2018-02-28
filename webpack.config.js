@@ -15,7 +15,8 @@ module.exports = {
         form:'./src/form.js',
         liftingStateUp: './src/lifting-state-up.js',
         compositionVsInheritance: './src/composition-inheritance.js',
-        thinkingReact: './src/thinking-react.js'
+        thinkingReact: './src/thinking-react.js',
+        router:'./src/react-router-demo.js'
     },
     output:{
         filename:'[name].bundle.js',
